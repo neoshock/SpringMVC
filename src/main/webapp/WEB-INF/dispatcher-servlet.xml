@@ -16,7 +16,8 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="index.htm">products</prop>
+                <prop key="index.htm">indexController</prop>
+                <prop key="contabilidad.htm">contabilidadController</prop>
             </props>
         </property>
     </bean>
@@ -29,5 +30,6 @@
     The index controller.
     -->
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController"></bean>
-    <bean name="products" class="Controllers.ProductsController" />
+    
+    <bean name="contabilidadController" class="Controllers.ContabilidadController"></bean>
 </beans>
