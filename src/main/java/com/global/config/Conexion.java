@@ -1,5 +1,5 @@
 
-package config;
+package com.global.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

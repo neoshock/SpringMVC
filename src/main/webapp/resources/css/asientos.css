@@ -1,0 +1,11 @@
+.asientos-container {
+    background: #F7F7F7;
+    width: 100%;
+}
+
+.asientos-header {
+    padding: 6px 15px;
+    background: F7F7F7;
+    border-top: 1px solid #EBEBEB;
+    border-bottom: 1px solid #ccc;
+}

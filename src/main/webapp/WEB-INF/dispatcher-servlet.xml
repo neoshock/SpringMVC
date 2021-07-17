@@ -31,5 +31,5 @@
     -->
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController"></bean>
     
-    <bean name="contabilidadController" class="Controllers.ContabilidadController"></bean>
+    <bean name="contabilidadController" class="com.contabilidad.controllers.ContabilidadController"></bean>
 </beans>
