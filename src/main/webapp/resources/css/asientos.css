@@ -9,3 +9,15 @@
     border-top: 1px solid #EBEBEB;
     border-bottom: 1px solid #ccc;
 }
+
+as-pendiente {
+    background: #eee;
+}
+
+as-cerrado {
+    background: #FF0000;
+}
+
+as-publicado {
+    background: #00FFD7;
+}

@@ -96,6 +96,17 @@ public class Asientos implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAsiento")
     private Collection<Movimientos> movimientosCollection;
 
+    public Asientos(Short idAsiento, String referencia, String observaciones, String estado, Date fecha, Date fechaCierre, String numero, double total) {
+        this.idAsiento = idAsiento;
+        this.referencia = referencia;
+        this.observaciones = observaciones;
+        this.estado = estado;
+        this.fecha = fecha;
+        this.fechaCierre = fechaCierre;
+        this.numero = numero;
+        this.total = total;
+    }
+
     public Asientos() {
     }
 

@@ -1,11 +1,5 @@
-<%-- 
-    Document   : contabilidad
-    Created on : 17/07/2021, 11:43:31
-    Author     : pideu
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -176,6 +170,10 @@
                     </div>
                 </div>
                 <div class="col-md-12">
+                    <h2>
+                        Asiento: 
+                        ${asientos[0].idAsiento}
+                    </h2>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -189,23 +187,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">ASC-0012</th>
-                                <td>18/06/2021</td>
-                                <td>DOC-0001</td>
-                                <td>DIA-INV-0111</td>
-                                <td>$536.00</td>
-                                <td>
-                                    <span class="bg-secondary rounded p-1 text-light">
-                                        Por revisar
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-info p-1">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <c:forEach var="asiento" items="${asientos}">
+                                <tr>
+                                    <th scope="row">${asiento.Numero}</th>
+                                    <td>${asiento.fecha}</td>
+                                    <td>${asiento.referencia}</td>
+                                    <td>${asiento.idDiario}</td>
+                                    <td>${asiento.total}</td>
+                                    <td>
+                                        <span class="rounded p-1 text-light as-${asiento.estado}">
+                                            ${asiento.estado}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info p-1">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>
