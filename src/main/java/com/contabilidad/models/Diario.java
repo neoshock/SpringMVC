@@ -65,7 +65,7 @@ public class Diario implements Serializable {
     @Column(name = "Descripcion")
     private String descripcion;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "diario")
-    private Asientos asientos;
+    private Asiento asientos;
 
     public Diario() {
     }
@@ -121,11 +121,11 @@ public class Diario implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Asientos getAsientos() {
+    public Asiento getAsientos() {
         return asientos;
     }
 
-    public void setAsientos(Asientos asientos) {
+    public void setAsientos(Asiento asientos) {
         this.asientos = asientos;
     }
 

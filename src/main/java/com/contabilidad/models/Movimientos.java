@@ -78,7 +78,7 @@ public class Movimientos implements Serializable {
     private short idSubCuenta;
     @JoinColumn(name = "idAsiento", referencedColumnName = "idAsiento")
     @ManyToOne(optional = false)
-    private Asientos idAsiento;
+    private Asiento idAsiento;
     @JoinColumn(name = "idMovimiento", referencedColumnName = "idSubcuenta", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private SubCuenta subCuenta;
@@ -156,11 +156,11 @@ public class Movimientos implements Serializable {
         this.idSubCuenta = idSubCuenta;
     }
 
-    public Asientos getIdAsiento() {
+    public Asiento getIdAsiento() {
         return idAsiento;
     }
 
-    public void setIdAsiento(Asientos idAsiento) {
+    public void setIdAsiento(Asiento idAsiento) {
         this.idAsiento = idAsiento;
     }
 

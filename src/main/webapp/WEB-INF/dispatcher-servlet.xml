@@ -13,6 +13,7 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="contabilidad.htm">contabilidadController</prop>
+                <prop key="agregarAsiento.htm">contabilidadController</prop>
             </props>
         </property>
     </bean>

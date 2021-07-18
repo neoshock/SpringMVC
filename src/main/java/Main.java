@@ -1,6 +1,6 @@
 
 import com.contabilidad.dao.AsientoDAO;
-import com.contabilidad.models.Asientos;
+import com.contabilidad.models.Asiento;
 import java.util.List;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
         AsientoDAO asientoDAO = new AsientoDAO();
-        List<Asientos> asientos = asientoDAO.getAsientosContables();
+        List<Asiento> asientos = asientoDAO.getAsientosContables();
         for(int i = 0; i< asientos.size(); i++){
             System.out.println(asientos.get(i).getNumero());
         }
