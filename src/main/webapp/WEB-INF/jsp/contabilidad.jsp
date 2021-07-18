@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -170,10 +170,6 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <h2>
-                        Asiento: 
-                        ${asientos[0].idAsiento}
-                    </h2>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -189,15 +185,29 @@
                         <tbody>
                             <c:forEach var="asiento" items="${asientos}">
                                 <tr>
-                                    <th scope="row">${asiento.Numero}</th>
+                                    <th scope="row">${asiento.numero}</th>
                                     <td>${asiento.fecha}</td>
                                     <td>${asiento.referencia}</td>
                                     <td>${asiento.idDiario}</td>
                                     <td>${asiento.total}</td>
                                     <td>
-                                        <span class="rounded p-1 text-light as-${asiento.estado}">
-                                            ${asiento.estado}
-                                        </span>
+                                        <c:choose>
+                                            <c:when test="${asiento.estado == 'pendiente'}">
+                                                <span class="rounded p-1 text-light bg-secondary">
+                                                    ${asiento.estado}
+                                                </span>
+                                            </c:when>
+                                            <c:when test="${asiento.estado == 'publicado'}">
+                                                <span class="rounded p-1 text-light bg-success">
+                                                    ${asiento.estado}
+                                                </span>
+                                            </c:when>
+                                            <c:when test="${asiento.estado == 'cerrado'}">
+                                                <span class="rounded p-1 text-light bg-warning">
+                                                    ${asiento.estado}
+                                                </span>
+                                            </c:when>
+                                        </c:choose>
                                     </td>
                                     <td>
                                         <button class="btn btn-info p-1">
