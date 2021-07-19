@@ -46,6 +46,11 @@
                 </div>
             </nav>
         </div>
+        <div class="alert alert-warning alert-dismissible fade show w-25 mx-auto" role="alert">
+            <strong>Atencion!</strong> El balance total en las cuentas deben coincidir
+            <button class="btn-close">
+            </button>
+        </div>
         <div class="container mb-4">
             <div class="row w-100">
                 <div class="col-md-9 mt-3 mb-4">
@@ -81,28 +86,28 @@
                                         </div>
                                         <label for="referencia" class="form-label">Documento Referencia*</label>
                                         <input type="text" name="referencia" class="form-control mb-2" id="referencia" value="${asiento.referencia}" required <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
-                                        <div class="invalid-feedback">
-                                            No existe el documento establecido
+                                            <div class="invalid-feedback">
+                                                No existe el documento establecido
+                                            </div>
+                                            <label for="observaciones" class="form-label">Observaciones</label>
+                                            <textarea name="observaciones" class="form-control mb-2"  rows="3" maxlength="60" 
+                                                      style="resize: none;" placeholder="Maximo 60 caracteres" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>${asiento.observaciones}</textarea>
                                         </div>
-                                        <label for="observaciones" class="form-label">Observaciones</label>
-                                        <textarea name="observaciones" class="form-control mb-2"  rows="3" maxlength="60" 
-                                                  style="resize: none;" placeholder="Maximo 60 caracteres" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>${asiento.observaciones}</textarea>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <label for="fecha" class="form-label">Fecha*</label>
-                                        <input name="fecha" type="date" class="form-control mb-2" id="fecha" value="${asiento.fecha}" required <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
-                                        <div class="invalid-feedback">
-                                            Seleccione una fecha
-                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="fecha" class="form-label">Fecha*</label>
+                                            <input name="fecha" type="date" class="form-control mb-2" id="fecha" value="${asiento.fecha}" required <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
+                                            <div class="invalid-feedback">
+                                                Seleccione una fecha
+                                            </div>
 
-                                        <label for="fechaCierre" class="form-label">Fecha de cierre*</label>
-                                        <input name="fechaCierre" type="date" class="form-control mb-2" id="fechaCierre" value="${asiento.fechaCierre}" required <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
-                                        <div class="invalid-feedback">
-                                            Seleccione la fecha de cierre
-                                        </div>
+                                            <label for="fechaCierre" class="form-label">Fecha de cierre*</label>
+                                            <input name="fechaCierre" type="date" class="form-control mb-2" id="fechaCierre" value="${asiento.fechaCierre}" required <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
+                                            <div class="invalid-feedback">
+                                                Seleccione la fecha de cierre
+                                            </div>
 
-                                        <label for="diario" class="form-label">Diario</label>
-                                        <select name="diario" class="form-select mb-4" id="diario" aria-label="Default select example" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
+                                            <label for="diario" class="form-label">Diario</label>
+                                            <select name="diario" class="form-select mb-4" id="diario" aria-label="Default select example" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
                                             <option value="${asiento.idDiario}">DIA-CPP-001</option>
                                         </select>
 
@@ -133,23 +138,24 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach var="movimiento" items="${movimientos}">
+                                                <c:forEach var="movimiento" items="${asiento.movimientos}">
                                                     <tr>
                                                         <th scope="row">
-                                                            <select class="form-select" name="${movimiento.idSubcuenta}" disabled>
-                                                                <c:forEach var="cuenta" items="${cuentas}">
-                                                                    <option value="${cuenta.idSubcuenta}">${cuenta.codigo} ${cuenta.nombre}</option>
-                                                                </c:forEach>
+                                                            <select class="form-select" name="idSubcuenta">
+                                                                <option value="${movimiento.idSubcuenta}">
+                                                                    <c:if test="${movimiento.idSubcuenta == 3}">1.1.3.3 Documentos por cobrar</c:if>
+                                                                    <c:if test="${movimiento.idSubcuenta == 12}">1.1.1.1 Caja</c:if>
+                                                                </option>
                                                             </select>
                                                         </th>
                                                         <td>
-                                                            <input disabled value="${movimiento.tipoMovimiento}" name="tipoMovimiento" type="text" class="form-control" placeholder="Descripcion" maxlength="21">
+                                                            <input readonly value="${movimiento.tipoMovimiento}" name="tipoMovimiento" type="text" class="form-control" placeholder="Descripcion" maxlength="21">
                                                         </td>
                                                         <td>
-                                                            <input disabled name="debe" type="number" value="${movimiento.debe}" class="number form-control">
+                                                            <input name="debe" type="number" value="${movimiento.debe}" class="debe form-control" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
                                                         </td>
                                                         <td>
-                                                            <input disabled name="haber" type="number" value="${movimiento.haber}" class="number form-control">
+                                                            <input name="haber" type="number" value="${movimiento.haber}" class="haber form-control" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
                                                         </td>
                                                         <td class="trash">
                                                             <button type="button" class="btn btn-danger" disabled><i class="bi bi-trash"></i></button>
@@ -164,10 +170,10 @@
                                                     <td>
                                                     </td>
                                                     <td>
-                                                        <input class="form-control" name="totalD" type="number" value="${asiento.total}" disabled>
+                                                        <input class="form-control" name="total" id="totalDebe" type="text" value="${asiento.total}" readonly="true">
                                                     </td>
                                                     <td>
-                                                        <input class="form-control" name="totalH" type="number" value="${asiento.total}" disabled>
+                                                        <input class="form-control" name="totalH" id="totalHaber" type="text" value="0.0" readonly="true">
                                                     </td>
                                                     <td>
                                                     </td>

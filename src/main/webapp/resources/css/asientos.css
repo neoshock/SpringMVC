@@ -21,3 +21,11 @@ as-cerrado {
 as-publicado {
     background: #00FFD7;
 }
+
+.alert {
+    position: fixed;
+    z-index: 1;
+    display: none;
+    left: 35%;
+    box-shadow: 1px 3px 3px 1px #ccc;
+}

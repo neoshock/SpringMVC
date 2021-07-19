@@ -2,15 +2,12 @@ package com.contabilidad.controllers;
 
 import com.contabilidad.dao.AsientoDAO;
 import com.contabilidad.models.Asiento;
-import com.contabilidad.models.Movimientos;
 import com.contabilidad.models.SubCuenta;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,8 +28,11 @@ public class ContabilidadController {
 
     @RequestMapping(value = "agregarAsiento.htm", method = RequestMethod.GET)
     public ModelAndView addAsientoContable() {
-        modelAndView.addObject(new Asiento());
+        Asiento asiento = new Asiento();
+        int numAsiento = asientosContables.getCountAsientos();
+        asiento.setNumero("ASC-000" + (numAsiento + 1));
         List<SubCuenta> subCuentas = asientosContables.getCuentasContables();
+        modelAndView.addObject("asiento", asiento);
         modelAndView.addObject("cuentas", subCuentas);
         modelAndView.setViewName("agregarAsiento");
         return modelAndView;
@@ -47,22 +47,22 @@ public class ContabilidadController {
     @RequestMapping(value = "editarAsiento.htm", method = RequestMethod.GET)
     public ModelAndView editAsientoContable(HttpServletRequest request) {
         modelAndView = new ModelAndView();
-        List<SubCuenta> subCuentas = asientosContables.getCuentasContables();
-        modelAndView.addObject("cuentas", subCuentas);
         int id = Integer.parseInt(request.getParameter("id"));
         Asiento asiento = asientosContables.getAsientoById(id);
+        asiento.setMovimientos(asientosContables.getMovimientoByAsiento(id));
         modelAndView.addObject("asiento", asiento);
         modelAndView.setViewName("editarAsiento");
         return modelAndView;
     }
 
     @RequestMapping(value = "editarAsiento.htm", method = RequestMethod.POST)
-    public ModelAndView editAsientoContable(@Valid @ModelAttribute Asiento asiento,HttpServletRequest request) {
+    public ModelAndView editAsientoContable(@Valid @ModelAttribute Asiento asiento, HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        boolean estado = asientosContables.editAsientoContable(asiento,id);
+        boolean estado = asientosContables.editAsientoContable(asiento, id);
         if (estado) {
+            asientosContables.updateMovimientos(asiento.getTotal(), id);
             return new ModelAndView("redirect:/contabilidad.htm");
-        }else{
+        } else {
             modelAndView.setViewName("editarAsiento");
             return modelAndView;
         }

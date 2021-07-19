@@ -1,9 +1,3 @@
-<%-- 
-    Document   : agregarAsiento
-    Created on : 18/07/2021, 14:27:26
-    Author     : pideu
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -64,7 +58,7 @@
                                 <div class="row justify-content-around p-1">
                                     <div class="col-md-5">
                                         <label for="numero" class="form-label">Numero de asiento*</label>
-                                        <input type="text" name="numero" class="form-control mb-2" id="numero" value="" required>
+                                        <input type="text" name="numero" class="form-control mb-2" id="numero" value="${asiento.numero}" readonly="true">
                                         <div class="invalid-feedback">
                                             El valor ingresado no coincide
                                         </div>

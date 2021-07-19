@@ -5,6 +5,8 @@
  */
 package com.contabilidad.models;
 
+import java.util.List;
+
 public class Asiento {
     int idAsiento;
     String referencia;
@@ -14,9 +16,10 @@ public class Asiento {
     String fechaCierre;
     int idDiario;
     String numero;
-    double total;
+    String total;
+    List<Movimientos> movimientos;
 
-    public Asiento(int idAsiento, String referencia, String observaciones, String estado, String fecha, String fechaCierre, int idDiario, String numero, double total) {
+    public Asiento(int idAsiento, String referencia, String observaciones, String estado, String fecha, String fechaCierre, int idDiario, String numero, String total) {
         this.idAsiento = idAsiento;
         this.referencia = referencia;
         this.observaciones = observaciones;
@@ -30,6 +33,16 @@ public class Asiento {
 
     public Asiento() {
     }
+
+    public List<Movimientos> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<Movimientos> movimientos) {
+        this.movimientos = movimientos;
+    }
+    
+    
 
     public int getIdAsiento() {
         return idAsiento;
@@ -95,13 +108,11 @@ public class Asiento {
         this.numero = numero;
     }
 
-    public double getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(String total) {
         this.total = total;
     }
-    
-    
 }
