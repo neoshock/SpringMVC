@@ -30,7 +30,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                                <a class="nav-link" aria-current="page" href="index.htm">Inicio</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
@@ -39,6 +39,15 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="contabilidad.htm">Asientos Contables</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+                                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cuentas por pagar
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="contabilidad.htm">Funcionalidad</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -145,22 +154,22 @@
                                                                 <option value="${movimiento.idSubcuenta}">
                                                                     <c:if test="${movimiento.idSubcuenta == 3}">1.1.3.3 Documentos por cobrar</c:if>
                                                                     <c:if test="${movimiento.idSubcuenta == 12}">1.1.1.1 Caja</c:if>
-                                                                </option>
-                                                            </select>
-                                                        </th>
-                                                        <td>
-                                                            <input readonly value="${movimiento.tipoMovimiento}" name="tipoMovimiento" type="text" class="form-control" placeholder="Descripcion" maxlength="21">
+                                                                    </option>
+                                                                </select>
+                                                            </th>
+                                                            <td>
+                                                                <input readonly value="${movimiento.tipoMovimiento}" name="tipoMovimiento" type="text" class="form-control" placeholder="Descripcion" maxlength="21">
                                                         </td>
                                                         <td>
                                                             <input name="debe" type="number" value="${movimiento.debe}" class="debe form-control" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
-                                                        </td>
-                                                        <td>
-                                                            <input name="haber" type="number" value="${movimiento.haber}" class="haber form-control" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
-                                                        </td>
-                                                        <td class="trash">
-                                                            <button type="button" class="btn btn-danger" disabled><i class="bi bi-trash"></i></button>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                            <td>
+                                                                <input name="haber" type="number" value="${movimiento.haber}" class="haber form-control" <c:if test="${asiento.estado == 'cerrado'}">disabled</c:if>>
+                                                            </td>
+                                                            <td class="trash">
+                                                                <button type="button" class="btn btn-danger" disabled><i class="bi bi-trash"></i></button>
+                                                            </td>
+                                                        </tr>
                                                 </c:forEach>
                                             </tbody>
                                             <tfoot>
