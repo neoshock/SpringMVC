@@ -1,6 +1,7 @@
 package com.contabilidad.dao;
 
 import com.contabilidad.models.Asiento;
+import com.contabilidad.models.SubCuenta;
 import com.global.config.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,8 +27,8 @@ public class AsientoDAO {
             resultSet = statement.executeQuery(sql);
             //Llena la lista de los datos
             while (resultSet.next()) {
-                asientos.add(new Asiento(resultSet.getInt("idAsiento"), resultSet.getString("Referencia"), 
-                        resultSet.getString("Observaciones"), resultSet.getString("Estado"), resultSet.getString("Fecha"), 
+                asientos.add(new Asiento(resultSet.getInt("idAsiento"), resultSet.getString("Referencia"),
+                        resultSet.getString("Observaciones"), resultSet.getString("Estado"), resultSet.getString("Fecha"),
                         resultSet.getString("FechaCierre"), resultSet.getInt("idDiario"), resultSet.getString("Numero"), 536.86));
             }
         } catch (Exception e) {
@@ -36,18 +37,71 @@ public class AsientoDAO {
         return asientos;
     }
 
+    public Asiento getAsientoById(int id) {
+        Asiento asientoAux = new Asiento();
+        String sql = String.format("SELECT \"idAsiento\", \"Referencia\", \"Observaciones\", \"Estado\", \"Fecha\", \"FechaCierre\", \"idDiario\", \"Numero\", \"Total\"\n"
+                + "	FROM public.\"Asientos\" where \"idAsiento\" = '%1$d'", id);
+        try {
+            connection = conexion.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            //Llena la lista de los datos
+            while (resultSet.next()) {
+                asientoAux = new Asiento(resultSet.getInt("idAsiento"), resultSet.getString("Referencia"), resultSet.getString("Observaciones"), resultSet.getString("Estado"), resultSet.getString("Fecha"), resultSet.getString("FechaCierre"), resultSet.getInt("idDiario"), resultSet.getString("Numero"), resultSet.getDouble("Total"));
+            }
+            return asientoAux;
+        } catch (Exception e) {
+            asientoAux = new Asiento();
+            asientoAux.setNumero("ERROR");
+            asientoAux.setObservaciones(e.getMessage());
+            return asientoAux;
+        }
+    }
+
+    public List<SubCuenta> getCuentasContables() {
+        String sql = "SELECT \"idSubcuenta\", \"Nombre\", \"Habilitado\", \"Codigo\"\n FROM public.\"SubCuenta\"";
+        List<SubCuenta> subCuentas = new ArrayList<>();
+        try {
+            connection = conexion.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            //Llena la lista de los datos
+            while (resultSet.next()) {
+                subCuentas.add(new SubCuenta(resultSet.getInt("idSubcuenta"), resultSet.getString("Nombre"), resultSet.getBoolean("Habilitado"), resultSet.getString("Codigo")));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return subCuentas;
+    }
+
     public boolean addAsientoContable(Asiento asiento) {
         String sql = String.format("INSERT INTO public.\"Asientos\""
                 + "( \"Referencia\", \"Observaciones\", \"Estado\", \"Fecha\", "
                 + "\"FechaCierre\", \"idDiario\", \"Numero\", \"Total\")\n"
-                + "		VALUES ('%1$s', '%2$s', '%3$s', '18/06/2021', '18/07/2021', '1', '%5$s',539.89)", 
-                asiento.getReferencia(), asiento.getObservaciones(), asiento.getEstado(), asiento.getFecha(), asiento.getNumero());
+                + "		VALUES ('%1$s', '%2$s', '%3$s', '%4$s', '%5$s', '1', '%6$s',539.89)",
+                asiento.getReferencia(), asiento.getObservaciones(), asiento.getEstado(), asiento.getFecha(), asiento.getFechaCierre(), asiento.getNumero());
         try {
             connection = conexion.getConnection();
             statement = connection.createStatement();
             statement.executeUpdate(sql);
             return true;
         } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean editAsientoContable(Asiento asiento, int id) {
+        String sql = String.format("UPDATE public.\"Asientos\"\n" +
+"	SET \"Referencia\"='%1$s', \"Observaciones\"='%2$s', \"Estado\"='%3$s', \"Fecha\"='%4$s', \"FechaCierre\"='%5$s', \"idDiario\"='1', \"Numero\"='%6$s', \"Total\"= 689.36\n" +
+"	WHERE \"idAsiento\" = '%7$d'",asiento.getReferencia(),asiento.getObservaciones(),asiento.getEstado(),asiento.getFecha(),asiento.getFechaCierre(),asiento.getNumero(),id);
+        try {
+            connection = conexion.getConnection();
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }

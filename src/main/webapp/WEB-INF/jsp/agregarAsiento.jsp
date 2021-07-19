@@ -4,6 +4,7 @@
     Author     : pideu
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,9 @@
               crossorigin="anonymous">
         <link rel="stylesheet" href="resources/css/asientos.css"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="resources/js/contabilidad.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -49,23 +52,23 @@
                 </div>
             </nav>
         </div>
-        <div class="container">
+        <div class="container mb-4">
             <div class="row w-100">
                 <div class="col-md-12 mt-3 mb-4">
                     <h3>Nuevo Asiento Contable</h3>
                 </div>
                 <div class="col-md-12">
-                    <form class="needs-validation" method="POST">
+                    <form class="needs-validation" novalidate method="POST">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row justify-content-around p-1">
                                     <div class="col-md-5">
-                                        <label for="numero" class="form-label">Numero de asiento</label>
+                                        <label for="numero" class="form-label">Numero de asiento*</label>
                                         <input type="text" name="numero" class="form-control mb-2" id="numero" value="" required>
                                         <div class="invalid-feedback">
                                             El valor ingresado no coincide
                                         </div>
-                                        <label for="referencia" class="form-label">Documento Referencia</label>
+                                        <label for="referencia" class="form-label">Documento Referencia*</label>
                                         <input type="text" name="referencia" class="form-control mb-2" id="referencia" value="" required>
                                         <div class="invalid-feedback">
                                             No existe el documento establecido
@@ -75,14 +78,14 @@
                                                   style="resize: none;" placeholder="Maximo 60 caracteres"></textarea>
                                     </div>
                                     <div class="col-md-5">
-                                        <label for="fecha" class="form-label">Fecha</label>
-                                        <input name="fecha" type="datetime-local" class="form-control mb-2" id="fecha" value="" required>
+                                        <label for="fecha" class="form-label">Fecha*</label>
+                                        <input name="fecha" type="date" class="form-control mb-2" id="fecha" value="" required>
                                         <div class="invalid-feedback">
                                             Seleccione una fecha
                                         </div>
 
-                                        <label for="fechaCierre" class="form-label">Fecha de cierre</label>
-                                        <input name="fechaCierre" type="datetime-local" class="form-control mb-2" id="fechaCierre" value="" required>
+                                        <label for="fechaCierre" class="form-label">Fecha de cierre*</label>
+                                        <input name="fechaCierre" type="date" class="form-control mb-2" id="fechaCierre" value="" required>
                                         <div class="invalid-feedback">
                                             Seleccione la fecha de cierre
                                         </div>
@@ -110,6 +113,5 @@
                 </div>
             </div>
         </div>
-        <script src="resources/js/contabilidad.js"/>
     </body>
 </html>

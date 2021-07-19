@@ -69,7 +69,7 @@
                                     <th scope="row">${asiento.numero}</th>
                                     <td>${asiento.fecha}</td>
                                     <td>${asiento.referencia}</td>
-                                    <td>${asiento.idDiario}</td>
+                                    <td>DIA-CPP-001</td>
                                     <td>${asiento.total}</td>
                                     <td>
                                         <c:choose>
@@ -84,16 +84,16 @@
                                                 </span>
                                             </c:when>
                                             <c:when test="${asiento.estado == 'cerrado'}">
-                                                <span class="rounded p-1 text-light bg-warning">
+                                                <span class="rounded p-1 text-light bg-danger">
                                                     ${asiento.estado}
                                                 </span>
                                             </c:when>
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <button class="btn btn-info p-1">
+                                        <a class="btn btn-info p-1" href="editarAsiento.htm?id=${asiento.idAsiento}">
                                             <i class="bi bi-pencil-square"></i>
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
