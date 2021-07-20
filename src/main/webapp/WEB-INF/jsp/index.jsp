@@ -20,8 +20,10 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.htm">ERP CONTABLE</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                    <button class="navbar-toggler" type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#navbarSupportedContent" 
+                            aria-controls="navbarSupportedContent" 
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -31,21 +33,34 @@
                                 <a class="nav-link" href="index.htm">Inicio</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
-                                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" 
+                                   id="navbarDropdown" role="button" 
+                                   data-bs-toggle="dropdown" aria-expanded="false">
                                     Contabilidad
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="contabilidad.htm">Asientos Contables</a></li>
+                                <ul class="dropdown-menu" 
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" 
+                                           href="contabilidad.htm">
+                                            Asientos Contables
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
-                                   role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Cuentas por pagar
+                                <a class="nav-link dropdown-toggle" 
+                                   href="#" id="navbarDropdown" 
+                                   role="button" data-bs-toggle="dropdown" 
+                                   aria-expanded="false">
+                                    Cuentas por cobrar
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="contabilidad.htm">Funcionalidad</a></li>
+                                <ul class="dropdown-menu" 
+                                    aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" 
+                                           href="mantenimientoclientes.htm">
+                                            Mantenimiento Clientes
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -67,7 +82,9 @@
                     </div>
                     <div class="review">
                         <p class="texto">
-                            Modulo de contabilidad, asientos contables, operaciones basicas de ingreso y edicion, realizar ajuste basico del balance.
+                            Módulo de contabilidad, asientos contables, 
+                            operaciones básicas de ingreso y edición, 
+                            realizar ajuste basico del balance.
                         </p>
                         <p class="nombre">-Josue Alcivar</p>
                     </div>
@@ -78,10 +95,12 @@
                     </div>
                     <div class="review">
                         <p class="texto">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium est distinctio facilis velit porro quidem consectetur, 
-                            ex numquam excepturi sunt qui praesentium omnis. Eaque aspernatur culpa aut vel porro?
+                            Módulo de Cuentas por Cobrar, 
+                            mantenimiento a clientes,
+                            operaciones básicas de registrar, editar y 
+                            anular un cliente.
                         </p>
-                        <p class="nombre">-Alex Vega</p>
+                        <p class="nombre">-Alexander Vega</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +113,10 @@
             <div class="row">
                 <div class="col-md-8">
                     <h4 class="titulo">Contenido en GitHub</h4>
-                    <a class="calle text-light" href="https://github.com/neoshock/SpringMVC">Enlace al proyecto en GitHub</a>
+                    <a class="calle text-light" 
+                       href="https://github.com/neoshock/SpringMVC">
+                        Enlace al proyecto en GitHub
+                    </a>
                 </div>
                 <div class="col-md-4 logo">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Spring_Framework_Logo_2018.svg/800px-Spring_Framework_Logo_2018.svg.png" alt="">

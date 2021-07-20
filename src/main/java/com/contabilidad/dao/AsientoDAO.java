@@ -6,6 +6,7 @@ import com.contabilidad.models.SubCuenta;
 import com.global.config.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -157,7 +158,8 @@ public class AsientoDAO {
             statement.executeUpdate(sql);
             setMovimientoDefault();
             return true;
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
             return false;
         }
     }

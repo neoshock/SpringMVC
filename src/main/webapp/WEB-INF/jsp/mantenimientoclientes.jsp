@@ -1,17 +1,15 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-        crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
               rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
               crossorigin="anonymous">
-        <link rel="stylesheet" href="resources/css/asientos.css"> 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-        <title>JSP Page</title>
+        <title>Mantenimiento a Clientes</title>
     </head>
     <body>
         <div class="header">
@@ -66,57 +64,64 @@
                 </div>
             </nav>
         </div>
-        <div class="asientos-container">
+        <div>
             <div class="row w-100" style="margin: 0px;">
-                <div class="col-md-12 asientos-header">
-                    <h3>Asientos Contables</h3>
+                <div class="col-md-12">
+                    <h3>Mantenimiento a Clientes</h3>
                 </div>
-                <div class="col-md-12 asientos-header">
-                    <a class="btn btn-primary" href="agregarAsiento.htm">Nuevo Asiento</a>
+                <div class="bg-light text-white">
+                    <a class="btn btn-primary" 
+                       href="agregarCliente.htm">
+                        Nuevo Cliente
+                    </a>
                 </div>
                 <div class="col-md-12">
                     <table class="table table-hover">
-                        <thead>
+                        <thead style="text-align: center;">
                             <tr>
-                                <th scope="col">Numero</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Referencia</th>
-                                <th scope="col">Diario</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col"></th>
+                                <th>Identificación</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>Email</th>
+                                <th>Habilitado</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <c:forEach var="asiento" items="${asientos}">
+                        <tbody style="text-align: center;">
+                            <c:forEach var="cliente" items="${clientes}">
                                 <tr>
-                                    <th scope="row">${asiento.numero}</th>
-                                    <td>${asiento.fecha}</td>
-                                    <td>${asiento.referencia}</td>
-                                    <td>DIA-CPP-001</td>
-                                    <td>${asiento.total}</td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${asiento.estado == 'pendiente'}">
-                                                <span class="rounded p-1 text-light bg-secondary">
-                                                    ${asiento.estado}
-                                                </span>
-                                            </c:when>
-                                            <c:when test="${asiento.estado == 'publicado'}">
-                                                <span class="rounded p-1 text-light bg-success">
-                                                    ${asiento.estado}
-                                                </span>
-                                            </c:when>
-                                            <c:when test="${asiento.estado == 'cerrado'}">
-                                                <span class="rounded p-1 text-light bg-danger">
-                                                    ${asiento.estado}
-                                                </span>
-                                            </c:when>
-                                        </c:choose>
+                                    <td>${cliente.identificacion}</td>
+                                    <td>${cliente.nombres}</td>
+                                    <td>${cliente.apellidos}</td>
+                                    <td>${cliente.direccion}</td>
+                                    <td>${cliente.telefono}</td>
+                                    <td>${cliente.email}</td>
+
+                                    <td <c:if test="${cliente.habilitado == true}">
+                                            style="background-color: #72FF2D"
+                                        </c:if>
+                                        <c:if test="${cliente.habilitado == false}">
+                                            style="background-color: #FD4747"
+                                        </c:if>>
+                                        ${cliente.habilitado}
                                     </td>
                                     <td>
-                                        <a class="btn btn-info p-1" href="editarAsiento.htm?id=${asiento.idAsiento}">
+                                        <a class="btn btn-info p-1" 
+                                           href="editarCliente.htm?id=${cliente.id}">
                                             <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info p-1"
+                                           href="anularCliente.htm?id=${cliente.id}">
+                                            <i class="bi bi-person-x-fill"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info p-1"  
+                                           href="desanularCliente.htm?id=${cliente.id}">
+                                            <i class="bi bi-person-check-fill"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -126,5 +131,6 @@
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>

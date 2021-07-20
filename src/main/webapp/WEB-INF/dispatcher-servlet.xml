@@ -15,6 +15,11 @@
                 <prop key="contabilidad.htm">contabilidadController</prop>
                 <prop key="agregarAsiento.htm">contabilidadController</prop>
                 <prop key="editarAsiento.htm">contabilidadController</prop>
+                <prop key="mantenimientoclientes.htm">cuentaxcobrarController</prop>
+                <prop key="agregarCliente.htm">cuentaxcobrarController</prop>
+                <prop key="editarCliente.htm">cuentaxcobrarController</prop>
+                <prop key="anularCliente.htm">cuentaxcobrarController</prop>
+                <prop key="desanularCliente.htm">cuentaxcobrarController</prop>
             </props>
         </property>
     </bean>
@@ -27,4 +32,5 @@
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController"></bean>
     
     <bean name="contabilidadController" class="com.contabilidad.controllers.ContabilidadController"></bean>
+    <bean name="cuentaxcobrarController" class="com.cuentaxcobrar.controllers.ClienteController"></bean>
 </beans>
